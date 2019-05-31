@@ -1,5 +1,6 @@
 extends layout.pug
 
 block content
-    h3 Hello World Reddit.js tutorial
-     
+    div.container
+        each post in posts
+            include ./include/posts.pug         
