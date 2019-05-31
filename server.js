@@ -1,10 +1,18 @@
 const express = require('express');
+const port = 3000
 
 const app = express();
 
-app.get('/', (request, response) => {
-    response.send('Hello World');
+app.use('/static', express.static('public'))
+
+app.set('view engine', 'pug');
+
+
+app.get('/', (req, res) => {
+    res.render('index');
 });
 
-app.listen(3000);
+app.listen(port, () => {
+    console.log(`The application is running in port ${port}`)
+});
 

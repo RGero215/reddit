@@ -1,0 +1,37 @@
+nav(class="navbar navbar-expand-lg navbar-light bg-light") 
+  a(class="navbar-brand" href="#")
+    img(src="/static/images/Reddit-512.png" width="30" height="30" class="d-inline-block align-top" alt="") 
+    | Reddit
+
+  button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation") 
+    span(class="navbar-toggler-icon") 
+  
+  div(class="collapse navbar-collapse" id="navbarSupportedContent") 
+    ul(class="navbar-nav mr-auto") 
+      li(class="nav-item dropdown") 
+        a(class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Popular&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       
+        div(class="dropdown-menu" aria-labelledby="navbarDropdown") 
+          a(class="dropdown-item" href="#") Popular
+          a(class="dropdown-item" href="#") All
+          a(class="dropdown-item" href="#") Original Content
+          div(class="dropdown-divider")
+          a(class="dropdown-item" href="#") Coins
+          a(class="dropdown-item" href="#") Premium
+        
+      li(class="nav-item") 
+        form(class="form-inline my-2 my-lg-0") 
+            input(class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search")
+    
+    if user_sign_in
+        ul(class="nav nav-pills nav-fill") 
+            li(class="nav-item") 
+                a(class="nav-link btn btn-outline-primary" href="#") ACCOUNT
+            li(class="nav-item")
+                a(class="nav-link active" href="#") LOG OUT
+    else
+        ul(class="nav nav-pills nav-fill") 
+            li(class="nav-item") 
+                a(class="nav-link btn btn-outline-primary" href="#") LOG IN
+            li(class="nav-item")
+                a(class="nav-link active" href="#") SIGN UP
