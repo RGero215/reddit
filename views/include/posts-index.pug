@@ -1,0 +1,14 @@
+block content
+    div(class='container col-md-8 col-md-offset-8')
+        div(class="card mb-3")
+            if !post.file 
+                img(src="/static/images/wallpaper.jpg" class="card-img-top" alt="...")
+            else
+                img(src=`/image/${post.file.filename}` class="card-img-top" alt="...") 
+            div(class="card-body") 
+                h5(class="card-title")= post.title
+                p(class="card-text")= post.summary
+                p(class="card-text") 
+                    a(href=`${post.url}` target='_blank')= post.url 
+                    small(class="text-muted")  Last updated #{moment(post.updatedAt).format('MMM Do YY')} mins ago
+        
