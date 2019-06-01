@@ -28,4 +28,5 @@ app.listen(port, () => {
 });
 
 require('./controllers/posts.js')(app);
+module.exports = app;
 

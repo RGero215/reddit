@@ -6,8 +6,8 @@ block content
             else
                 img(src=`/image/${post.file.filename}` class="card-img-top" alt="...") 
             div(class="card-body") 
-                h5(class="card-title")= post.title
-                p(class="card-text")= post.summary
+                h5(class="card-title posts-index")= post.title
+                p(class="card-text posts-index")= post.summary
                 p(class="card-text") 
                     a(href=`${post.url}` target='_blank')= post.url 
                     small(class="text-muted")  Last updated #{moment(post.updatedAt).format('MMM Do YY')} mins ago
