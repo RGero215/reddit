@@ -17,6 +17,9 @@ footer {
 .posts-index {
    color: black 
 }
+.post-picture-label {
+    margin-bottom: -1px;
+}
 
 @media only screen and (max-width: 1112px) {
     .nav-item form input {

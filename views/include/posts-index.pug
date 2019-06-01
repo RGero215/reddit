@@ -10,5 +10,7 @@ block content
                 p(class="card-text posts-index")= post.summary
                 p(class="card-text") 
                     a(href=`${post.url}` target='_blank')= post.url 
-                    small(class="text-muted")  Last updated #{moment(post.updatedAt).format('MMM Do YY')} mins ago
+                small(class="text-muted")  Last updated #{moment(post.updatedAt).format('MMM Do YY')} mins ago
+                div(class="text-right")
+                    a(href=`/n/${post.subreddit}`)= post.subreddit
         

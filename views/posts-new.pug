@@ -17,9 +17,16 @@ block content
                     div(class="form-group")
                         label(for="post-summary") Summary
                         textarea(name="summary" class="form-control" id="post-summary" placeholder="Title")
-                    
-                    div(class="input-group mb-3") 
-                        div(class="custom-file") 
+
+                    div(class="form-group")
+                        label(for="post-subreddit") Subreddit
+                        input(name="subreddit" type="text" class="form-control" id="post-subreddit" placeholder="Subreddit")
+                        
+                    div(class="form-group post-picture-label")
+                        label(for="post-picture") Picture
+
+                    div(class="input-group mb-3")
+                        div(class="custom-file")
                             input(type="file" name='file' class="custom-file-input" id="inputGroupFile02") 
                             label(class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02") Choose file
                     

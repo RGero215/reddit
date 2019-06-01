@@ -39,7 +39,9 @@ module.exports = app => {
         post.title = req.body.title
         post.url = req.body.url
         post.summary = req.body.summary
+        post.subreddit = req.body.subreddit
         post.file = req.file
+        console.log("req.body.subreddit: ", req.body.subreddit)
 
         // SAVE INSTANCE OF POST MODEL TO DB
         post.save((err, post) => {
@@ -56,6 +58,17 @@ module.exports = app => {
           })
           .catch(err => {
             console.log(err.message);
+          });
+    });
+
+    // SUBREDDIT
+    app.get("/n/:subreddit", function(req, res) {
+        Post.find({ subreddit: req.params.subreddit })
+          .then(posts => {
+            res.render("index", { posts });
+          })
+          .catch(err => {
+            console.log(err);
           });
     });
 
