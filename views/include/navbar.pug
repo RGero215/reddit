@@ -23,7 +23,7 @@ nav(class="navbar navbar-expand-lg navbar-light bg-light")
         form(class="form-inline my-2 my-lg-0") 
             input(class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search")
     
-    if user_sign_in
+    if !user_sign_in
         ul(class="nav nav-pills nav-fill")
             li(class='nav-item')
                 a(href="/posts/new" class="btn btn-outline-primary navbar-btn") New Post  
