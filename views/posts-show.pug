@@ -12,4 +12,16 @@ block content
                 p(class="card-text")= post.summary
                 p(class="card-text") 
                     a(href=`${post.url}` target='_blank')= post.url 
-                    small(class="text-muted")  Last updated #{moment(post.updatedAt).format('MMM Do YY')} mins ago
+                small(class="text-muted")  Last updated #{moment(post.updatedAt).format('MMM Do YY')} mins ago
+                div(class="text-right")
+                    a(href=`/n/${post.subreddit}`)= post.subreddit
+
+        form(action=`/posts/${post._id}/comments` method="post") 
+            textarea(class='form-control' name="content" placeholder="Comment")
+            div(class="text-right comment-button") 
+                button(type="submit" class="btn btn-primary") Save
+        
+        each comment in post.comments
+            div(class="card comment-card")
+                div(class="card-body")= comment.content
+            

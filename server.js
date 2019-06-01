@@ -28,5 +28,6 @@ app.listen(port, () => {
 });
 
 require('./controllers/posts.js')(app);
+require('./controllers/comments.js')(app);
 module.exports = app;
 

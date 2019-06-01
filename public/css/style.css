@@ -21,6 +21,16 @@ footer {
     margin-bottom: -1px;
 }
 
+.comment-button {
+    margin-top: 10px;
+    margin-right: -6px;
+    margin-bottom: 20px;
+}
+
+.comment-card {
+    margin-bottom: 5px;
+}
+
 @media only screen and (max-width: 1112px) {
     .nav-item form input {
         padding-left: 5px;
