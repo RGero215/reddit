@@ -1,10 +1,12 @@
+require('dotenv').config()
 const express = require('express');
 const port = 3000
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
+var cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const app = express();
-
-var Grid = require('gridfs-stream');
+app.use(cookieParser()); // Add this after you initialize express.
 
 // Use Body Parser
 app.use(bodyParser.json());
@@ -29,5 +31,6 @@ app.listen(port, () => {
 
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
+require('./controllers/auth.js')(app);
 module.exports = app;
 

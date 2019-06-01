@@ -23,18 +23,18 @@ nav(class="navbar navbar-expand-lg navbar-light bg-light")
         form(class="form-inline my-2 my-lg-0") 
             input(class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search")
     
-    if !user_sign_in
+    if user_sign_in
         ul(class="nav nav-pills nav-fill")
             li(class='nav-item')
                 a(href="/posts/new" class="btn btn-outline-primary navbar-btn") New Post  
             li(class="nav-item")
-                a(class="btn btn-primary navbar-btn" href="#") LOG OUT
+                a(class="btn btn-primary navbar-btn" href="/logout") LOG OUT
             li(class="nav-item") 
                 a(class="nav-link" href="#")
                     img(src="/static/images/account.png" width="30" height="30" class="d-inline-block align-top" alt="")
     else
         ul(class="nav nav-pills nav-fill") 
             li(class="nav-item") 
-                a(class="btn btn-outline-primary navbar-btn" href="#") LOG IN
+                a(class="btn btn-outline-primary navbar-btn" href="/login") LOG IN
             li(class="nav-item")
-                a(class="btn btn-primary navbar-btn" href="#") SIGN UP
+                a(class="btn btn-primary navbar-btn" href="/sign-up") SIGN UP
