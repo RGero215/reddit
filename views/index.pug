@@ -3,4 +3,5 @@ extends layout.pug
 block content
     div.container
         each post in posts
-            include ./include/posts-index.pug         
+            a(href=`/posts/${post._id}`)
+                include ./include/posts-index.pug         
