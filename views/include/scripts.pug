@@ -8,4 +8,6 @@ body
                 var fileName = $(this).val().replace('C:\\fakepath\\', " ");
                 //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(fileName);
+                var tmppath = URL.createObjectURL(event.target.files[0]);
+                $("#signup-image").attr("src", URL.createObjectURL(event.target.files[0]));
             })

@@ -20,10 +20,18 @@ conn.once('open', () => {
 module.exports = app => {
 
     app.get('/', (req, res) => {
+        var userImage;
         var currentUser = req.user;
+        if (req.user) {
+            User.findById({_id: currentUser._id})
+            .then(user => {
+                userImage = user.file.filename
+            })
+        }
+        
         Post.find({}).populate('author')
             .then(posts => {
-                res.render("index", { posts, currentUser });
+                res.render("index", { posts, currentUser, userImage });
             })
             .catch(err => {
                 console.log(err.message);
@@ -32,8 +40,14 @@ module.exports = app => {
     
     app.get('/posts/new', (req, res) => {
         if (req.user) {
+            var userImage;
             var currentUser = req.user;
-            res.render('posts-new', {currentUser})
+
+            User.findById({_id: currentUser._id})
+                .then(user => {
+                    userImage = user.file.filename
+                    res.render('posts-new', {currentUser, userImage})
+                })
         } else {
             return res.status(401); // UNAUTHORIZED
         }
@@ -76,10 +90,16 @@ module.exports = app => {
 
     app.get("/posts/:id", function(req, res) {
         // LOOK UP THE POST
+        var userImage;
         var currentUser = req.user;
+
+        User.findById({_id: currentUser._id})
+            .then(user => {
+                userImage = user.file.filename
+            })
         Post.findById(req.params.id).populate({path:'comments', populate: {path: 'author'}}).populate('author')
             .then((post) => {
-            res.render('posts-show', { post, currentUser })
+            res.render('posts-show', { post, currentUser, userImage })
           }).catch((err) => {
             console.log(err.message)
           })
@@ -87,10 +107,16 @@ module.exports = app => {
 
     // SUBREDDIT
     app.get("/n/:subreddit", function(req, res) {
+        var userImage;
         var currentUser = req.user;
+
+        User.findById({_id: currentUser._id})
+            .then(user => {
+                userImage = user.file.filename
+            })
         Post.find({ subreddit: req.params.subreddit }).populate('author')
           .then(posts => {
-            res.render("index", { posts, currentUser });
+            res.render("index", { posts, currentUser, userImage });
           })
           .catch(err => {
             console.log(err);
@@ -133,7 +159,7 @@ module.exports = app => {
                 });
             }
             // check if image
-            if(file.contentType === 'image/jpeg' || file.contentType === 'img/png') {
+            if(file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
                 // Read 
                 const readstream = gfs.createReadStream(file.filename);
                 readstream.pipe(res);

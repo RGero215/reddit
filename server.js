@@ -46,5 +46,6 @@ app.listen(port, () => {
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
 require('./controllers/auth.js')(app);
+require('./controllers/profile.js')(app);
 module.exports = app;
 

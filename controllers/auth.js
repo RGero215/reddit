@@ -1,5 +1,22 @@
 const User = require("../models/user");
 const jwt = require('jsonwebtoken');
+var mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true);
+var Grid = require('gridfs-stream');
+var mid = require('../middleware');
+
+var mongoURI = 'mongodb://localhost/reddit-db'
+let gfs;
+
+// Create mongo connection
+const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
+
+conn.once('open', () => {
+  // Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('uploads');
+});
+
 
 module.exports = (app) => {
     // SIGN UP FORM
@@ -8,9 +25,12 @@ module.exports = (app) => {
     });
 
     // SIGN UP POST
-    app.post("/sign-up", (req, res) => {
+    app.post("/sign-up", mid.upload.single('file'),  (req, res) => {
       // Create User
-      const user = new User(req.body);
+      const user = new User();
+      user.username = req.body.username
+      user.password = req.body.password
+      user.file = req.file
     
       user
       user.save().then((user) => {
