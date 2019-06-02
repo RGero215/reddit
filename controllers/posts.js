@@ -19,9 +19,10 @@ conn.once('open', () => {
 module.exports = app => {
 
     app.get('/', (req, res) => {
+        var currentUser = req.user;
         Post.find({})
             .then(posts => {
-                res.render("index", { posts });
+                res.render("index", { posts, currentUser });
             })
             .catch(err => {
                 console.log(err.message);
@@ -34,20 +35,26 @@ module.exports = app => {
     
     // CREATE
     app.post("/posts/new", mid.upload.single('file'), (req, res, next) => {
-        // INSTANTIATE INSTANCE OF POST MODEL
-        const post = new Post();
-        post.title = req.body.title
-        post.url = req.body.url
-        post.summary = req.body.summary
-        post.subreddit = req.body.subreddit
-        post.file = req.file
-        console.log("req.body.subreddit: ", req.body.subreddit)
 
-        // SAVE INSTANCE OF POST MODEL TO DB
-        post.save((err, post) => {
-            // REDIRECT TO THE ROOT
-            return res.redirect(`/`);
-        })
+        if (req.user) {
+            // INSTANTIATE INSTANCE OF POST MODEL
+            const post = new Post();
+            post.title = req.body.title
+            post.url = req.body.url
+            post.summary = req.body.summary
+            post.subreddit = req.body.subreddit
+            post.file = req.file
+            console.log("req.body.subreddit: ", req.body.subreddit)
+
+            // SAVE INSTANCE OF POST MODEL TO DB
+            post.save((err, post) => {
+                // REDIRECT TO THE ROOT
+                return res.redirect(`/`);
+            })
+        } else {
+            return res.status(401); // UNAUTHORIZED
+        }
+        
     });
 
     app.get("/posts/:id", function(req, res) {
