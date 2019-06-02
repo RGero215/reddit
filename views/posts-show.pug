@@ -12,7 +12,9 @@ block content
                 p(class="card-text")= post.summary
                 p(class="card-text") 
                     a(href=`${post.url}` target='_blank')= post.url 
-                small(class="text-muted")  Last updated #{moment(post.updatedAt).format('MMM Do YY')} mins ago
+                small(class="text-muted")  Last updated #{moment(post.updatedAt).fromNow()} by 
+                |
+                small=  post.author.username
                 div(class="text-right")
                     a(href=`/n/${post.subreddit}`)= post.subreddit
 
@@ -24,4 +26,8 @@ block content
         each comment in post.comments
             div(class="card comment-card")
                 div(class="card-body")= comment.content
+                div(class="text-right comment-username")
+                    small(class="text-muted")  Last updated #{moment(comment.updatedAt).fromNow()} by 
+                    |
+                    small=  post.author.username
             
