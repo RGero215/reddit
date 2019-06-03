@@ -4,6 +4,7 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
 
+
 // Import the Post model from our models folder so we
 // we can use it in our tests.
 const Post = require('../models/post').Posts;
@@ -19,6 +20,7 @@ describe('Posts', function() {
       title: 'post title',
       url: 'https://www.google.com',
       summary: 'post summary'
+
   };
   it('Should create with valid attributes at POST /posts/new', function(done) {
     // Checks how many posts there are now

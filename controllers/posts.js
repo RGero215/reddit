@@ -48,8 +48,11 @@ module.exports = app => {
 
             User.findById({_id: currentUser._id})
                 .then(user => {
-                    userImage = user.file.filename
-                    res.render('posts-new', {currentUser, userImage})
+                    if (user.file){
+                        userImage = user.file.filename
+                        res.render('posts-new', {currentUser, userImage})
+                    }
+                    res.render('posts-new', {currentUser})
                 })
                 .catch(err => {
                     console.log(err.message);
