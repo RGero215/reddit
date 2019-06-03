@@ -13,9 +13,15 @@ module.exports = function(app) {
             User.findById({_id: currentUser._id}).populate('posts')
                 .then(user => {
                     user = user
-                    userImage = user.file.filename
-                    res.render('profile', {currentUser, user, userImage})
+                    if (user.file) {
+                        userImage = user.file.filename
+                        return res.render('profile', {currentUser, user, userImage})
+                    }
+                    res.render('profile', {currentUser, user})
                 })
+                .catch(err => {
+                    console.log(err.message);
+                });
         } else {
             return res.status(401); // UNAUTHORIZED
         }

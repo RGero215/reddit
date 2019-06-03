@@ -3,8 +3,18 @@ extends layout.pug
 block content
     div(class='container col-md-4 col-md-offset-4')
         div(class="row")
-            div(class="col-sm-12 col-sm-offset-12 user-div")
-                img(src=`/image/${userImage}` width="200" height="200"   class="d-inline-block align-top user" alt="")
+            if userImage
+                div(class="col-sm-12 col-sm-offset-12 user-div")
+                    img(src=`/image/${userImage}` width="200" height="200"   class="d-inline-block align-top user" alt="")
+            else
+                div(class="col-sm-12 col-sm-offset-12 user-div")
+                    img(src='/static/images/account.png' width="200" height="200"   class="d-inline-block align-top user" alt="")
+            
+            div(class="card user-info col-sm-12 col-sm-offset-12" style="width: 18rem;") 
+                ul(class="list-group list-group-flush") 
+                    li(class="list-group-item")= `Username: ${user.username}`
+                    li(class="list-group-item")= `Total Posts: ${user.posts.length}`
+                    
 
     
     each post in user.posts   

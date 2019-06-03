@@ -24,9 +24,12 @@ module.exports = app => {
         var currentUser = req.user;
         if (req.user) {
             User.findById({_id: currentUser._id})
-            .then(user => {
-                userImage = user.file.filename
-            })
+                .then(user => {
+                    userImage = user.file.filename
+                })
+                .catch(err => {
+                    console.log(err.message);
+                });
         }
         
         Post.find({}).populate('author')
@@ -48,6 +51,9 @@ module.exports = app => {
                     userImage = user.file.filename
                     res.render('posts-new', {currentUser, userImage})
                 })
+                .catch(err => {
+                    console.log(err.message);
+                });
         } else {
             return res.status(401); // UNAUTHORIZED
         }
@@ -88,7 +94,7 @@ module.exports = app => {
         
     });
 
-    app.get("/posts/:id", function(req, res) {
+    app.get("/posts/:id", function(req, res, next) {
         // LOOK UP THE POST
         var userImage;
         var currentUser = req.user;
@@ -96,7 +102,11 @@ module.exports = app => {
         User.findById({_id: currentUser._id})
             .then(user => {
                 userImage = user.file.filename
+                next(done)
             })
+            .catch(err => {
+                console.log(err.message);
+            });
         Post.findById(req.params.id).populate({path:'comments', populate: {path: 'author'}}).populate('author')
             .then((post) => {
             res.render('posts-show', { post, currentUser, userImage })
@@ -114,6 +124,9 @@ module.exports = app => {
             .then(user => {
                 userImage = user.file.filename
             })
+            .catch(err => {
+                console.log(err.message);
+            });
         Post.find({ subreddit: req.params.subreddit }).populate('author')
           .then(posts => {
             res.render("index", { posts, currentUser, userImage });

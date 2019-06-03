@@ -29,9 +29,13 @@ nav(class="navbar navbar-expand-lg navbar-light bg-light")
                 a(href="/posts/new" class="btn btn-outline-primary navbar-btn") New Post  
             li(class="nav-item")
                 a(class="btn btn-primary navbar-btn" href="/logout") LOG OUT
-            li(class="nav-item") 
-                a(class="nav-link" href="/profile")
-                    img(src=`/image/${userImage}` width="50" height="50" id='user-image'  class="d-inline-block align-top" alt="")
+            li(class="nav-item")
+                if userImage 
+                  a(class="nav-link" href="/profile")
+                      img(src=`/image/${userImage}` width="50" height="50" id='user-image'  class="d-inline-block align-top" alt="")
+                else
+                  a(class="nav-link" href="/profile")
+                      img(src='/static/images/account.png' width="50" height="50" id='user-image'  class="d-inline-block align-top" alt="")
     else
         ul(class="nav nav-pills nav-fill") 
             li(class="nav-item") 

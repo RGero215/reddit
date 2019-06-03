@@ -61,6 +61,11 @@ footer {
       display: inline-block;
       vertical-align: top
   }
+
+  .user-info {
+      text-align: center;
+      margin-bottom: 30px;
+  }
   
   .profile {
     background-image: url('http://placehold.it/400x200');
