@@ -114,7 +114,7 @@ module.exports = app => {
             .catch(err => {
                 console.log("Error: -> ", err.message);
             });
-        Post.findById(req.params.id).populate({path:'comments', populate: {path: 'author'}}).populate('author')
+        Post.findById(req.params.id).populate('comments').lean()
             .then((post) => {
             res.render('posts-show', { post, currentUser, userImage })
           }).catch((err) => {
@@ -134,7 +134,7 @@ module.exports = app => {
             .catch(err => {
                 console.log(err.message);
             });
-        Post.find({ subreddit: req.params.subreddit }).populate('author')
+        Post.find({ subreddit: req.params.subreddit }).lean()
           .then(posts => {
             res.render("index", { posts, currentUser, userImage });
           })
