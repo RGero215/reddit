@@ -25,7 +25,10 @@ module.exports = app => {
         if (req.user) {
             User.findById({_id: currentUser._id})
                 .then(user => {
-                    userImage = user.file.filename
+                    if (user.file) {
+                        userImage = user.file.filename
+                    }
+                    
                 })
                 .catch(err => {
                     console.log(err.message);
@@ -97,18 +100,19 @@ module.exports = app => {
         
     });
 
-    app.get("/posts/:id", function(req, res, next) {
+    app.get("/posts/:id", function(req, res) {
         // LOOK UP THE POST
         var userImage;
         var currentUser = req.user;
 
         User.findById({_id: currentUser._id})
             .then(user => {
-                userImage = user.file.filename
-                next(done)
+                if (user.file) {
+                    userImage = user.file.filename
+                }
             })
             .catch(err => {
-                console.log(err.message);
+                console.log("Error: -> ", err.message);
             });
         Post.findById(req.params.id).populate({path:'comments', populate: {path: 'author'}}).populate('author')
             .then((post) => {

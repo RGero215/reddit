@@ -7,10 +7,10 @@ const PostSchema = new Schema({
   title: { type: String, required: true },
   url: { type: String, required: true },
   summary: { type: String, required: true },
-  subreddit: { type: String, required: false },
-  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
-  author : { type: Schema.Types.ObjectId, ref: "User", required: false},
-  file: {type: Object, required: false},
+  subreddit: { type: String },
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
+  author : { type: Schema.Types.ObjectId, ref: "User"},
+  file: {type: Object},
 });
 
 PostSchema.pre("save", function(next) {
