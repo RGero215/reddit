@@ -12,6 +12,10 @@ footer {
     margin-top: 200px;
     display: flex;
     justify-content: center;
+    position: relative;
+    clear:both;
+    clear:left;
+    clear:right;
 }
 
 .posts-index {

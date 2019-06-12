@@ -35,6 +35,7 @@ block content
             each subcomment in comment.comments
                 div(class="card comment-card col-md-10 col-md-offset-10 subcomments")
                     div(class="card-body")= subcomment.content
+                        
                     div(class="text-right comment-username")
                         small(class="text-muted")  Last updated #{moment(subcomment.updatedAt).fromNow()} by 
                         |
