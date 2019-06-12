@@ -102,24 +102,31 @@ module.exports = app => {
 
     app.get("/posts/:id", function(req, res) {
         // LOOK UP THE POST
-        var userImage;
-        var currentUser = req.user;
+        if (req.user) {
+            var userImage;
+            var currentUser = req.user;
 
-        User.findById({_id: currentUser._id})
-            .then(user => {
-                if (user.file) {
-                    userImage = user.file.filename
-                }
+            User.findById({_id: currentUser._id})
+                .then(user => {
+                    if (user.file) {
+                        userImage = user.file.filename
+                    }
+                })
+                .catch(err => {
+                    console.log("Error: -> ", err.message);
+                });
+            Post.findById(req.params.id).populate('comments')
+                .then((post) => {
+                    console.log("******", post)
+                res.render('posts-show', { post, currentUser, userImage })
+            }).catch((err) => {
+                console.log(err.message)
             })
-            .catch(err => {
-                console.log("Error: -> ", err.message);
-            });
-        Post.findById(req.params.id).populate('comments').lean()
-            .then((post) => {
-            res.render('posts-show', { post, currentUser, userImage })
-          }).catch((err) => {
-            console.log(err.message)
-          })
+        } else {
+            console.log('Unauthorized')
+            return res.status(401); // UNAUTHORIZED
+        }
+        
     });
 
     // SUBREDDIT

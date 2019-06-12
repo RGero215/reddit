@@ -47,5 +47,7 @@ require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
 require('./controllers/auth.js')(app);
 require('./controllers/profile.js')(app);
+require('./controllers/replies.js')(app);
+
 module.exports = app;
 

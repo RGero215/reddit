@@ -27,6 +27,10 @@ footer {
     margin-bottom: 20px;
 }
 
+.reply-button {
+    margin-right: -0.5px;
+}
+
 .comment-card {
     margin-bottom: 5px;
 }
@@ -35,9 +39,24 @@ footer {
     margin-right: 10px;
 }
 
-.user-div {
+.user-div{
     text-align: center;
 }
+
+.subcomments {
+    float: right;
+    clear:both;
+    clear:left;
+    clear:right;
+}
+
+.comments {
+    clear:both;
+    clear:left;
+    clear:right;
+}
+
+
 
 .user {
     display: inline-block;
@@ -79,6 +98,10 @@ footer {
     border-radius: 50%;
     margin-top: -13px;
     margin-bottom: -17px;
+  }
+
+  h3.comment {
+      margin-left: 15px;
   }
 
 

@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+    div(class='container col-md-8 col-md-offset-8')
+        div(class="row") 
+            h3(class='comment')= comment.content
+            div(class="col-sm-12 col-sm-offset-12") 
+                form(action=`/posts/${post._id}/comments/${comment._id}/replies` method="post") 
+                    div(class="form-group") 
+                        textarea(name="content" class="form-control" id="reply-content" placeholder="Reply")
+
+                    div(class='text-right') 
+                        button(type="submit" class="btn btn-primary reply-button") Reply
