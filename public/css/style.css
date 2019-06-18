@@ -18,6 +18,11 @@ footer {
     clear:right;
 }
 
+.vote-down, .vote-up {
+    display: inline-block;
+    margin-right: 20px;
+}
+
 .posts-index {
    color: black 
 }

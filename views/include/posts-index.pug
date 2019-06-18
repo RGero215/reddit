@@ -16,5 +16,12 @@ block content
 
                 div(class="text-right")
                     a(href=`/n/${post.subreddit}`)= post.subreddit
+
+                form(class="vote-up" data-id=`${post._id}`) 
+                    button(class="btn btn-primary" type="submit") Vote Up
+
+                form(class="vote-down" data-id=`${post._id}`) 
+                    button(class='btn btn-outline-primary' type="submit") Vote Down
+                
                     
         

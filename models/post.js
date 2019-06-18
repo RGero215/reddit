@@ -11,6 +11,9 @@ const PostSchema = new Schema({
   subreddit: { type: String },
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
   author : { type: Schema.Types.ObjectId, ref: "User"},
+  upVotes : [{ type: Schema.Types.ObjectId, ref: "User"}],
+  downVotes : [{ type: Schema.Types.ObjectId, ref: "User"}],
+  voteScore : {type: Number},
   file: {type: Object},
 });
 

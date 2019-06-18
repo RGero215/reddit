@@ -35,7 +35,8 @@ app.use(checkAuth);
 app.locals.moment = require('moment');
 
 
-app.use('/static', express.static('public'))
+app.use('/static', express.static('public'));
+app.use(express.static('public'));
 
 app.set('view engine', 'pug');
 
